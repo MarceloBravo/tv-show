@@ -18,11 +18,9 @@ async function onDeviceReady() {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-  console.log(firebase);
 
   const shows = db.collection('shows');
   let data = await shows.get()
-  debugger
   let arrDatos = data.docs.map( doc => doc).sort((a,b) => a.data().nombre - b.data().nombre).map(
       d => (
       `<tr>
@@ -35,8 +33,6 @@ async function onDeviceReady() {
       )
 
   )
-  
-  console.log(arrDatos.join(''))
   document.getElementById('lst-programas').innerHTML = arrDatos.join('')
   
 }
